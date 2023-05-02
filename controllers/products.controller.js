@@ -1,12 +1,12 @@
-const Product = require("../models/product");
+const Product = require("../models/product.model");
 
-const add = (req, res) => {
+const add = async (req, res) => {
   const product = new Product({
     name: req.body.name,
     price: req.body.price,
   });
 
-  const result = product.save();
+  const result = await product.save();
 
   res.status(201).json(result);
 };
