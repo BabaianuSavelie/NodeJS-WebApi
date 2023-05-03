@@ -18,4 +18,12 @@ const getAll = async (req, res) => {
   res.status(200).json(orders);
 };
 
-module.exports = { create, getAll };
+const getById = async (req, res) => {
+  const id = req.params.id;
+
+  const order = await Order.findById(id);
+
+  res.status(200).json(order);
+};
+
+module.exports = { create, getAll,getById };
