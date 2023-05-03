@@ -1,4 +1,11 @@
 const mongoose = require("mongoose");
+// const productSchema = require("./product.model");
+
+const productSchema = new mongoose.Schema({
+  id: mongoose.Schema.Types.UUID,
+  name: String,
+  price: Number,
+});
 
 const orderSchema = mongoose.Schema({
   orderDate: {
@@ -12,6 +19,9 @@ const orderSchema = mongoose.Schema({
   totalPrice: {
     type: Number,
     required: true,
+  },
+  products: {
+    type: [productSchema],
   },
 });
 

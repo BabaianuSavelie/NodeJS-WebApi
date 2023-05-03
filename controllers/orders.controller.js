@@ -5,6 +5,7 @@ const create = async (req, res) => {
     orderDate: req.body.orderDate,
     totalQuantity: req.body.totalQuantity,
     totalPrice: req.body.totalPrice,
+    products: req.body.products,
   });
 
   const result = await order.save();
@@ -21,9 +22,17 @@ const getAll = async (req, res) => {
 const getById = async (req, res) => {
   const id = req.params.id;
 
-  const order = await Order.findById(id);
+  await Order.findById(id);
 
-  res.status(200).json(order);
+  res.status(200);
 };
 
-module.exports = { create, getAll,getById };
+const deleteById = async (req, res) => {
+  const id = req.params.id;
+
+  const deletedOrder = await Order.deleteOne({ _id: id });
+
+  res.status(200).json(deletedOrder);
+};
+
+module.exports = { create, getAll, getById, deleteById };
